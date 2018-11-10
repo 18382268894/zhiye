@@ -12,10 +12,10 @@ import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/sirupsen/logrus"
+	"time"
+	"os"
 	"github.com/urfave/cli"
 	"flag"
-	"os"
-	"time"
 )
 
 var(
@@ -49,15 +49,24 @@ var(
 	LogFormat string
 
 	//数据库配置参数
-	/*DBType string
+	DBType string
 	DBUsername string
 	DBPassword string
 	DBAddr string
 	DBName string
-	DBCharset string
-	DBLoc string
-	DBParseTime string
-	DBNetwork string*/
+
+	//邮箱参数
+	EmailHost string
+	EmailPort int
+	EmailAddr string
+	EmailPassword string
+
+	//手机验证配置参数
+	AccessKey string
+	AccessSecret string
+	AliyunUrl string
+	SignName string
+	TemplateCode string
 )
 
 
@@ -83,7 +92,6 @@ func init(){
 	loadConf()
 	initLog()
 	logrus.Info("conf load success")
-	fmt.Println("HELLO")
 }
 
 //使用viper加载配置文件
@@ -100,17 +108,24 @@ func loadConf(){
 	//PageSize = viper.GetInt("app.pagesize")
 	ReadTimeOut = viper.GetDuration("server.read_time_out") * time.Second
 	WriteTimeOut = viper.GetDuration("server.write_time_out") * time.Second
-	/*DBAddr = viper.GetString("database.addr")
+	DBAddr = viper.GetString("database.addr")
 	DBType = viper.GetString("database.type")
 	DBUsername = viper.GetString("database.username")
 	DBPassword = viper.GetString("database.password")
 	DBName = viper.GetString("database.dbname")
-	DBCharset = viper.GetString("database.charset")
-	DBLoc = viper.GetString("database.loc")
-	DBParseTime = viper.GetString("database.parseTime")
-	DBNetwork = viper.GetString("database.network")
+	EmailHost = viper.GetString("email.host")
+	EmailPort = viper.GetInt("email.port")
+	EmailAddr = viper.GetString("email.addr")
+	EmailPassword = viper.GetString("email.password")
+	AccessKey = viper.GetString("aliyun.access_key")
+	AccessSecret = viper.GetString("aliyun.access_secret")
+	AliyunUrl = viper.GetString("aliyun.url")
+	SignName = viper.GetString("aliyun.signname")
+	TemplateCode = viper.GetString("aliyun.templatecode")
+	/*
 	TokenSecret = viper.GetString("token.secret")
-	TokenMaxLife = viper.GetInt64("token.maxlife")*/
+	TokenMaxLife = viper.GetInt64("token.maxlife")
+	*/
 }
 
 
