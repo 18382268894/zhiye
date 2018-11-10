@@ -1,0 +1,26 @@
+app:
+  runmode: release #运行模式
+  ping_max_num: 10 #服务器启动自检最大次数
+  pagesize: 10 #分页查询时每页的数据条数
+server:
+    addr: localhost:8080  #服务器端口
+    read_time_out: 10 #单位秒
+    write_time_out: 10
+redis:
+  addr: localhost:6379
+session:
+  provider: redis #session类型（memory、mysql、redis）
+  maxlife: 30*24*3600 #session有效期,30天
+logger:
+  file: ./log/log.dat  #日志存放文件
+  level: debug  #日志级别
+  format: json #日志格式
+database:
+  type: mysql
+  addr: 127.0.0.1:3306
+  username: root
+  password: chen19950210
+  dbname: blog1
+token:
+  secret: ogHahJHgltmgXjguGAa-HGuihgoha-HGugbnf
+  maxlife: 3600 #token存活时间，60分钟
